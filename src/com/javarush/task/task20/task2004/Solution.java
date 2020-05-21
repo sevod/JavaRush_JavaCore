@@ -1,6 +1,8 @@
 package com.javarush.task.task20.task2004;
 
-/* 
+import java.io.*;
+
+/*
 Читаем и пишем в файл статики
 */
 public class Solution {
@@ -9,7 +11,8 @@ public class Solution {
         //вы можете найти your_file_name.tmp в папке TMP или исправьте outputStream/inputStream в соответствии с путем к вашему реальному файлу
         try {
 
-            File yourFile = File.createTempFile("your_file_name", null);
+            //File yourFile = File.createTempFile("your_file_name", null);
+            File yourFile = new File("c:/test/1"); //my
             OutputStream outputStream = new FileOutputStream(yourFile);
             InputStream inputStream = new FileInputStream(yourFile);
 
@@ -26,6 +29,10 @@ public class Solution {
 
             loadedObject.load(inputStream);
             //here check that the classWithStatic object is equal to the loadedObject object - проверьте тут, что classWithStatic и loadedObject равны
+
+            System.out.println(classWithStatic);
+            System.out.println(loadedObject);
+            System.out.println(classWithStatic.equals(inputStream));
 
             outputStream.close();
             inputStream.close();
@@ -46,10 +53,21 @@ public class Solution {
 
         public void save(OutputStream outputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            outputStream.write(ClassWithStatic.staticString.getBytes());
+            outputStream.write("\r\n".getBytes());
+            outputStream.write(((Integer)this.i).toString().getBytes());
+            outputStream.write("\r\n".getBytes());
+            outputStream.write(((Integer)this.j).toString().getBytes());
         }
 
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            while (bufferedReader.ready()){
+                ClassWithStatic.staticString = bufferedReader.readLine();
+                this.i = Integer.parseInt(bufferedReader.readLine());
+                this.j = Integer.parseInt(bufferedReader.readLine());
+            }
         }
 
         @Override

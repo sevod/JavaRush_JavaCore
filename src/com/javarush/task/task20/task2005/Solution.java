@@ -1,5 +1,6 @@
 package com.javarush.task.task20.task2005;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +13,8 @@ public class Solution {
     public static void main(String[] args) {
         //исправь outputStream/inputStream в соответствии с путем к твоему реальному файлу
         try {
-            File your_file_name = File.createTempFile("your_file_name", null);
+            //File your_file_name = File.createTempFile("your_file_name", null);
+            File your_file_name = new File ("c:/test/1");
             OutputStream outputStream = new FileOutputStream(your_file_name);
             InputStream inputStream = new FileInputStream(your_file_name);
 
@@ -46,7 +48,7 @@ public class Solution {
 
             Human human = (Human) o;
 
-            if (name == null ? !name.equals(human.name) : human.name != null) return false;
+            if (name != null ? !name.equals(human.name) : human.name != null) return false;
             return assets != null ? assets.equals(human.assets) : human.assets == null;
 
         }
@@ -76,6 +78,7 @@ public class Solution {
                 for (Asset current : this.assets)
                     printWriter.println(current.getName());
             }
+            printWriter.flush();
             printWriter.close();
         }
 
