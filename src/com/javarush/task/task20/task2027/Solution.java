@@ -1,5 +1,7 @@
 package com.javarush.task.task20.task2027;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /* 
@@ -14,7 +16,9 @@ public class Solution {
                 {'m', 'l', 'p', 'r', 'r', 'h'},
                 {'p', 'o', 'e', 'e', 'j', 'j'}
         };
-        detectAllWords(crossword, "home", "same");
+        List<Word> result = detectAllWords(crossword, "home", "same");
+
+        System.out.println(result);
         /*
 Ожидаемый результат
 home - (5, 3) - (2, 0)
@@ -24,7 +28,19 @@ same - (1, 1) - (4, 1)
 
     public static List<Word> detectAllWords(int[][] crossword, String... words) {
 
-        return null;
+        List<Word> list = new ArrayList<>();
+
+        System.out.println(words[1]);
+
+        for (String str: words) {
+            System.out.println(str);
+        }
+
+        list.add(new Word("Хрень"));
+
+
+
+        return list;
     }
 
     public static class Word {
